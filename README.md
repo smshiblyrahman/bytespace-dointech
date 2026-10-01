@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ByteSpace
 
-## Getting Started
+Pixel-faithful build of the **ByteSpace New** Figma design: a course marketplace landing page plus the Login and Signup screens.
 
-First, run the development server:
+**Stack:** Next.js 16 (App Router, TypeScript) · Tailwind CSS v4 · Motion (Framer Motion) · Lenis smooth scrolling
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Routes & Screens
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Screen | Route / Local URL | Description |
+| --- | --- | --- |
+| **Home** | [`/`](http://localhost:3000/) | Landing page |
+| **Register** | [`/signup`](http://localhost:3000/signup) | Create an account |
+| **Login** | [`/login`](http://localhost:3000/login) | Sign in |
+| **Search Page** | [`/search`](http://localhost:3000/search) | Course catalog search & filter |
+| **Course Details** | [`/courses/learn-figma-from-basic`](http://localhost:3000/courses/learn-figma-from-basic) | Course overview & about tab |
+| **Course Lessons** | [`/courses/learn-figma-from-basic?tab=lessons`](http://localhost:3000/courses/learn-figma-from-basic?tab=lessons) | Syllabus / player: [`/lessons/1-1`](http://localhost:3000/courses/learn-figma-from-basic/lessons/1-1) |
+| **Course Reviews** | [`/courses/learn-figma-from-basic?tab=reviews`](http://localhost:3000/courses/learn-figma-from-basic?tab=reviews) | Student reviews & feedback |
+| **Creator Profile** | [`/creators/purepearl-studio`](http://localhost:3000/creators/purepearl-studio) | Instructor profile & courses |
+| **404 Not Found** | [`/404`](http://localhost:3000/404) | Custom 404 page |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
+```
+public/assets/           Images and SVGs exported from Figma
+  avatars/ backgrounds/ courses/ icons/ images/ logo/ partners/ shapes/
+src/
+  app/
+    layout.tsx           Root layout: fonts, metadata, Lenis provider
+    page.tsx             Landing page (composes the sections)
+    (auth)/login         Sign-in page
+    (auth)/signup        Sign-up page
+    globals.css          Tailwind v4 theme (design tokens from Figma)
+  assets/fonts/          Self-hosted Satoshi and Clash Display
+  components/
+    auth/                AuthShell, AuthCollage, AuthForm, TextField
+    cards/               CourseCard, CategoryCard, stat cards (progress, revenue, …)
+    layout/              Header, Footer, Logo, NewsletterForm
+    motion/              Reveal / Stagger scroll animations
+    providers/           SmoothScroll (Lenis)
+    sections/            Hero, Partners, FeaturedCourses, LearningPaths,
+                         CreatorFeatures, CreatorCta, Testimonials
+    ui/                  Button, Container, Ornament, AvatarStack, SectionHeading
+  data/                  Course, category, testimonial and navigation content
+  lib/                   Font loaders and the `cn` class helper
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Implementation notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Design tokens.** Colors, fonts and the layered drop shadow come from the Figma styles and are defined in the `@theme` block in `globals.css`. Poppins is loaded with `next/font/google`; Satoshi and Clash Display are self-hosted with `next/font/local`.
+- **3D ornaments.** The design tints neutral 3D renders by masking a lime or white layer to each shape and blending it with `hard-light`. `Ornament` rebuilds this in CSS (`mask-image` plus `mix-blend-mode`), so the design's source renders are used as-is.
+- **Responsive art.** The hero, feature collages and CTA keep the exact 1440px Figma coordinates on desktop. On smaller screens the same layout is scaled down, and the text reflows normally.
+- **Interactions.**
+  - Topic chips filter the course grid, with an animated active pill.
+  - The hero search filters courses (`?q=`) and scrolls to the grid.
+  - Cards animate on hover, and sections animate into view.
+  - Hero cards have parallax, stats count up, and progress bars fill in.
+  - The header turns solid on scroll and has a mobile menu.
+  - The auth forms validate input. There is no backend, so a successful submit is simulated.

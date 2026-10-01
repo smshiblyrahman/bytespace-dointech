@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local visual QA artifacts
+/.qa
+
+# IDE and agent metadata
+.windsurf
+.agents
+skills-lock.json
