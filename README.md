@@ -1,66 +1,106 @@
 # ByteSpace
 
-Pixel-faithful build of the **ByteSpace New** Figma design: a course marketplace landing page plus the Login and Signup screens.
+ByteSpace is a modern online course marketplace and learning platform website built with pixel-level precision.
 
-**Stack:** Next.js 16 (App Router, TypeScript) · Tailwind CSS v4 · Motion (Framer Motion) · Lenis smooth scrolling
+## Project Overview
 
-## Getting started
+ByteSpace is a high-fidelity website implementation based on the provided Figma design:
+- [ByteSpace Figma Design](https://www.figma.com/design/26TBgRjmpuxudcErJsHUfy/ByteSpace-New-Check-website)
+
+The project includes the complete landing page experience, interactive course exploration and filtering, comprehensive course details and curriculum overviews, video player views, creator profile pages, and authentication flows (login and signup).
+
+## Features
+
+- **Landing Page**: Complete hero section, partner showcase, featured course topics with animated tab switching, learning paths, creator features, call-to-action sections, and community testimonials.
+- **Course Discovery & Search**: Filter courses by topic, difficulty level, category, and instructor with responsive search controls.
+- **Course Details & Player**: Multi-tab course pages with curriculum breakdowns, instructor bios, reviews, and interactive video lesson interfaces.
+- **Creator Profiles**: Instructor showcase displaying portfolio courses and instructor statistics.
+- **Authentication**: Responsive Login and Sign Up flows with input validation.
+- **Aesthetics & Performance**: Built with design tokens from Figma, self-hosted typography, custom 3D ornaments, smooth Lenis scrolling, and micro-animations.
+
+## Tech Stack
+
+Detected from `package.json`:
+- **Framework**: [Next.js](https://nextjs.org/) 16.3.6 (App Router, Turbopack)
+- **UI Library**: [React](https://react.dev/) 19.2.8
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4
+- **Animations**: [Motion](https://motion.dev/) (Framer Motion v13)
+- **Smooth Scrolling**: [Lenis](https://lenis.darkroom.engineering/) 1.3.26
+- **Language**: [TypeScript](https://www.typescriptlang.org/) 5
+- **Linting**: [ESLint](https://eslint.org/) 9 with `eslint-config-next`
+
+## Project Structure
+
+```
+bytespace/
+├── public/
+│   └── assets/              # Static assets (icons, images, backgrounds, logos, shapes)
+├── src/
+│   ├── app/                 # Next.js App Router pages and route handlers
+│   │   ├── (auth)/          # Authentication routes (login, signup)
+│   │   ├── courses/         # Course details and lesson player routes
+│   │   ├── creators/        # Creator profile routes
+│   │   ├── search/          # Course discovery and catalog search
+│   │   ├── layout.tsx       # Root layout with fonts, metadata, and providers
+│   │   └── page.tsx         # ByteSpace landing page
+│   ├── assets/              # Local typography (Satoshi, Clash Display)
+│   ├── components/          # Reusable UI, layout, card, and section components
+│   │   ├── auth/            # Auth forms and layout shells
+│   │   ├── cards/           # Course, category, creator, and stat cards
+│   │   ├── layout/          # Header, footer, logo, and newsletter components
+│   │   ├── motion/          # Motion reveal and stagger wrappers
+│   │   ├── providers/       # Smooth scrolling provider
+│   │   ├── sections/        # Landing page sections
+│   │   └── ui/              # Buttons, containers, badges, and ornaments
+│   ├── data/                # Static datasets (courses, creators, testimonials, site config)
+│   ├── hooks/               # Custom React hooks
+│   ├── lib/                 # Utility helpers, fonts, and search functions
+│   └── types/               # TypeScript type definitions
+├── .gitignore               # Ignored files and patterns
+├── package.json             # Scripts and project dependencies
+└── tsconfig.json            # TypeScript configuration
+```
+
+## Installation
+
+Install project dependencies:
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
-npm run build    # production build
 ```
 
-## Routes & Screens
+## Development
 
-| Screen | Route / Local URL | Description |
-| --- | --- | --- |
-| **Home** | [`/`](http://localhost:3000/) | Landing page |
-| **Register** | [`/signup`](http://localhost:3000/signup) | Create an account |
-| **Login** | [`/login`](http://localhost:3000/login) | Sign in |
-| **Search Page** | [`/search`](http://localhost:3000/search) | Course catalog search & filter |
-| **Course Details** | [`/courses/learn-figma-from-basic`](http://localhost:3000/courses/learn-figma-from-basic) | Course overview & about tab |
-| **Course Lessons** | [`/courses/learn-figma-from-basic?tab=lessons`](http://localhost:3000/courses/learn-figma-from-basic?tab=lessons) | Syllabus / player: [`/lessons/1-1`](http://localhost:3000/courses/learn-figma-from-basic/lessons/1-1) |
-| **Course Reviews** | [`/courses/learn-figma-from-basic?tab=reviews`](http://localhost:3000/courses/learn-figma-from-basic?tab=reviews) | Student reviews & feedback |
-| **Creator Profile** | [`/creators/purepearl-studio`](http://localhost:3000/creators/purepearl-studio) | Instructor profile & courses |
-| **404 Not Found** | [`/404`](http://localhost:3000/404) | Custom 404 page |
+Start the local development server:
 
-## Project structure
-
-```
-public/assets/           Images and SVGs exported from Figma
-  avatars/ backgrounds/ courses/ icons/ images/ logo/ partners/ shapes/
-src/
-  app/
-    layout.tsx           Root layout: fonts, metadata, Lenis provider
-    page.tsx             Landing page (composes the sections)
-    (auth)/login         Sign-in page
-    (auth)/signup        Sign-up page
-    globals.css          Tailwind v4 theme (design tokens from Figma)
-  assets/fonts/          Self-hosted Satoshi and Clash Display
-  components/
-    auth/                AuthShell, AuthCollage, AuthForm, TextField
-    cards/               CourseCard, CategoryCard, stat cards (progress, revenue, …)
-    layout/              Header, Footer, Logo, NewsletterForm
-    motion/              Reveal / Stagger scroll animations
-    providers/           SmoothScroll (Lenis)
-    sections/            Hero, Partners, FeaturedCourses, LearningPaths,
-                         CreatorFeatures, CreatorCta, Testimonials
-    ui/                  Button, Container, Ornament, AvatarStack, SectionHeading
-  data/                  Course, category, testimonial and navigation content
-  lib/                   Font loaders and the `cn` class helper
+```bash
+npm run dev
 ```
 
-## Implementation notes
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-- **Design tokens.** Colors, fonts and the layered drop shadow come from the Figma styles and are defined in the `@theme` block in `globals.css`. Poppins is loaded with `next/font/google`; Satoshi and Clash Display are self-hosted with `next/font/local`.
-- **3D ornaments.** The design tints neutral 3D renders by masking a lime or white layer to each shape and blending it with `hard-light`. `Ornament` rebuilds this in CSS (`mask-image` plus `mix-blend-mode`), so the design's source renders are used as-is.
-- **Responsive art.** The hero, feature collages and CTA keep the exact 1440px Figma coordinates on desktop. On smaller screens the same layout is scaled down, and the text reflows normally.
-- **Interactions.**
-  - Topic chips filter the course grid, with an animated active pill.
-  - The hero search filters courses (`?q=`) and scrolls to the grid.
-  - Cards animate on hover, and sections animate into view.
-  - Hero cards have parallax, stats count up, and progress bars fill in.
-  - The header turns solid on scroll and has a mobile menu.
-  - The auth forms validate input. There is no backend, so a successful submit is simulated.
+## Build
+
+Run production build:
+
+```bash
+npm run build
+```
+
+Start the production server:
+
+```bash
+npm run start
+```
+
+## Deployment
+
+The application is optimized for deployment on [Vercel](https://vercel.com/):
+1. Connect your GitHub repository to Vercel.
+2. Vercel automatically detects Next.js build settings (`npm run build`).
+3. Deploy directly with production-ready asset caching, font optimization, and static/dynamic route handling.
+
+## Figma Reference
+
+Designed according to the official ByteSpace specification:
+[https://www.figma.com/design/26TBgRjmpuxudcErJsHUfy/ByteSpace-New-Check-website](https://www.figma.com/design/26TBgRjmpuxudcErJsHUfy/ByteSpace-New-Check-website)
