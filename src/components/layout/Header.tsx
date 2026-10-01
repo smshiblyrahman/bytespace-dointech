@@ -109,13 +109,23 @@ export function Header() {
           </ul>
 
           <div className="hidden items-center gap-6 md:flex">
-            <Link href="/login" className="font-body text-base leading-6 text-shuttle-50 transition-colors hover:text-lime-400">
+            <Link
+              href="/login"
+              className="font-body text-base leading-6 text-shuttle-50 transition-colors hover:text-lime-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-400 rounded-sm"
+            >
               Sign In
             </Link>
-            <Link href="/signup" className="font-body text-base leading-6 text-shuttle-50 transition-colors hover:text-lime-400">
+            <Link
+              href="/signup"
+              className="font-body text-base leading-6 text-shuttle-50 transition-colors hover:text-lime-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-400 rounded-sm"
+            >
               Join Us
             </Link>
-            <button type="button" aria-label="Cart" className="transition-transform hover:scale-110">
+            <button
+              type="button"
+              aria-label="View shopping bag"
+              className="transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-400 rounded-full p-1"
+            >
               <Image src="/assets/icons/shopping-bag.svg" alt="" width={24} height={24} />
             </button>
           </div>
