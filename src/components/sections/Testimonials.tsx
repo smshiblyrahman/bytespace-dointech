@@ -4,7 +4,7 @@ import { testimonials } from "@/data/testimonials";
 
 export function Testimonials() {
   return (
-    <section className="relative overflow-hidden bg-surface pt-[74px] pb-24 lg:h-[784px] lg:pb-0">
+    <section id="testimonials" aria-labelledby="testimonials-title" className="relative scroll-mt-24 overflow-hidden bg-surface pt-[74px] pb-24 lg:h-[784px] lg:pb-0">
       <Image
         src="/assets/backgrounds/glow-lime-lg.svg"
         alt=""
@@ -29,7 +29,7 @@ export function Testimonials() {
 
       <div className="relative mx-auto flex max-w-[1248px] flex-col gap-12 px-4 sm:px-6 lg:gap-[72px]">
         <Reveal className="flex flex-col gap-6 lg:flex-row lg:items-end lg:gap-[43px]">
-          <h2 className="font-heading text-[32px] font-semibold leading-[1.2] tracking-[-0.01em] text-black sm:text-[44px] lg:w-[577px] lg:shrink-0">
+          <h2 id="testimonials-title" className="font-heading text-[32px] font-semibold leading-[1.2] tracking-[-0.01em] text-black sm:text-[44px] lg:w-[577px] lg:shrink-0">
             Discover What Our Community Is Saying
           </h2>
           <p className="font-body text-lg leading-[1.6] text-black-700 lg:w-[580px]">

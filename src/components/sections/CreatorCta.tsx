@@ -4,7 +4,7 @@ import { Ornament } from "@/components/ui/Ornament";
 
 export function CreatorCta() {
   return (
-    <section className="bg-blueprint relative isolate overflow-hidden bg-persian-blue-800">
+    <section aria-labelledby="creator-cta-title" className="bg-blueprint relative isolate overflow-hidden bg-persian-blue-800">
       {/* Ornaments laid out on the 1440px Figma frame, centred and scaled for smaller screens */}
       <div className="pointer-events-none absolute top-0 left-1/2 -z-10 h-[488px] w-[1440px] origin-top -translate-x-1/2 scale-[.6] opacity-60 md:scale-[.8] md:opacity-100 xl:scale-100">
         <Ornament shape="cone" tint="lime" size={188} className="top-0 left-[1080px]" delay={0.4} />
@@ -17,7 +17,7 @@ export function CreatorCta() {
       </div>
 
       <Reveal className="mx-auto flex max-w-[1012px] flex-col items-center justify-center gap-10 px-4 sm:px-6 py-24 text-center lg:h-[488px] lg:py-0">
-        <h2 className="max-w-[710px] font-heading text-[32px] font-semibold leading-[1.2] tracking-[-0.01em] text-shuttle-50 sm:text-[44px]">
+        <h2 id="creator-cta-title" className="max-w-[710px] font-heading text-[32px] font-semibold leading-[1.2] tracking-[-0.01em] text-shuttle-50 sm:text-[44px]">
           Unlock Your Potential as a Creator with ByteSpace
         </h2>
         <p className="font-body text-base leading-[1.6] text-shuttle-50 sm:text-lg">
