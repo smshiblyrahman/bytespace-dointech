@@ -22,7 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${poppins.variable} ${satoshi.variable} ${clashDisplay.variable}`}
     >
-      <body>
+      <body className="overflow-x-hidden min-h-screen bg-white">
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
