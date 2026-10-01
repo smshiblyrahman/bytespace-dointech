@@ -26,12 +26,16 @@ export function NewsletterForm() {
         className="h-[52px] w-full rounded-[100px] border border-shuttle-200 bg-white px-6 font-body text-base leading-[1.6] text-shuttle-950 outline-none transition-colors placeholder:text-shuttle-950 focus:border-persian-blue-800 sm:w-[376px]"
       />
       {/* The design labels this button "Search" */}
-      <Button type="submit" className="self-start">
+      <Button type="submit" aria-label="Subscribe to newsletter" className="self-start">
         Search
       </Button>
+      <div aria-live="polite" className="sr-only">
+        {done && "Thanks for subscribing!"}
+      </div>
       <AnimatePresence>
         {done && (
           <motion.p
+            aria-hidden="true"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
